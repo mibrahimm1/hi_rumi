@@ -589,7 +589,7 @@ function CakeScene3D({ position = [0, 0, 0], interactive = false }) {
 }
 
 function Cake3D(props) {
-  const { scene } = useGLTF('/models/heart-shaped_cake.glb')
+  const { scene } = useGLTF('/models/heart-shaped_cake_draco.glb')
   
   // Clone scene so we don't mutate the cached object directly
   const clonedScene = useMemo(() => scene.clone(), [scene])
@@ -614,4 +614,4 @@ function Cake3D(props) {
     </group>
   )
 }
-useGLTF.preload('/models/heart-shaped_cake.glb')
+useGLTF.preload('/models/heart-shaped_cake_draco.glb')

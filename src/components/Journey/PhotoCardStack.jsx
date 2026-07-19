@@ -44,6 +44,7 @@ function CardFace({ photo }) {
           alt=""
           className="w-full h-full object-cover select-none"
           draggable={false}
+          loading="lazy"
         />
       </div>
       <div className="shrink-0 min-h-[80px] py-4 bg-[#fdfaf5] flex items-center justify-center">

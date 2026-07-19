@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
 const TOTAL_PHOTOS = 24
+const PHOTOS_TO_PRELOAD = 3
 
 export default function LoadingScreen({ onReady }) {
   const [minTimeElapsed, setMinTimeElapsed] = useState(false)
@@ -15,19 +16,17 @@ export default function LoadingScreen({ onReady }) {
     return () => clearTimeout(timer)
   }, [])
 
-  // 2. Preload all heavy images in the background
+  // 2. Preload only the FIRST FEW heavy images in the background to avoid network choke
   useEffect(() => {
     let loadedCount = 0
-    const imageUrls = Array.from({ length: TOTAL_PHOTOS }, (_, i) => `/photos/${i + 1}.jpg`)
+    const imageUrls = Array.from({ length: PHOTOS_TO_PRELOAD }, (_, i) => `/photos/${i + 1}.jpg`)
     
-    // Preload custom fonts by injecting a hidden element
     document.fonts.ready.then(() => {
       console.log('Fonts loaded')
     })
     
     imageUrls.forEach(url => {
       const img = new Image()
-      // Whether it loads or fails, we increment to avoid getting stuck forever
       img.onload = img.onerror = () => {
         loadedCount++
         setImagesLoaded(loadedCount)
@@ -38,7 +37,7 @@ export default function LoadingScreen({ onReady }) {
 
   // 3. Complete loading when both conditions are met
   useEffect(() => {
-    if (minTimeElapsed && imagesLoaded >= TOTAL_PHOTOS) {
+    if (minTimeElapsed && imagesLoaded >= PHOTOS_TO_PRELOAD) {
       onReady()
     }
   }, [minTimeElapsed, imagesLoaded, onReady])
