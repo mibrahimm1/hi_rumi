@@ -27,10 +27,6 @@ export default function Experience({ currentScene, phase }) {
       <NebulaField />
       {phase === 'enter' && <CakeScene3D />}
       {phase === 'experience' && <SceneElements currentScene={currentScene} />}
-      <EffectComposer>
-        <Bloom luminanceThreshold={0.15} luminanceSmoothing={0.9} intensity={1.8} />
-        <Vignette darkness={0.55} offset={0.3} />
-      </EffectComposer>
     </>
   )
 }
@@ -57,12 +53,11 @@ function CameraController({ currentScene }) {
 
     const finalLookAt = lookAt.clone()
     if (currentScene === 4 && phase > 0 && phase < 3) {
-       // Shake gets more intense in phase 2
-       const intensity = phase === 1 ? 0.05 : 0.3
-       const speed = phase === 1 ? 25 : 45
-       finalLookAt.x += (Math.random() - 0.5) * intensity
-       finalLookAt.y += (Math.random() - 0.5) * intensity
-       finalLookAt.z += (Math.random() - 0.5) * intensity
+       // Gentle sine wave shake instead of violent Math.random()
+       const intensity = phase === 1 ? 0.05 : 0.15
+       const t = state.clock.elapsedTime
+       finalLookAt.x += Math.sin(t * 15) * intensity
+       finalLookAt.y += Math.cos(t * 17) * intensity
     } else if (currentScene === 4 && phase === 3) {
        // Subtle aftershock
        const intensity = 0.02
@@ -201,7 +196,7 @@ function LetterScene3D() {
     if (candleRef.current) {
       const t = state.clock.elapsedTime
       candleRef.current.intensity =
-        1.8 + Math.sin(t * 7.3) * 0.4 + Math.sin(t * 13.1) * 0.2 + Math.sin(t * 3.7) * 0.3
+        1.8 + Math.sin(t * 2.3) * 0.4 + Math.sin(t * 4.1) * 0.2 + Math.sin(t * 1.7) * 0.3
     }
   })
 
