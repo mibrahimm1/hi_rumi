@@ -158,7 +158,7 @@ function SwipeableCard({ reason, index, total, onRemove, isTop }) {
       className={`absolute inset-0 bg-white/10 border border-white/20 rounded-3xl shadow-2xl p-10 md:p-14 flex items-center justify-center text-center ${isTop ? 'cursor-grab' : ''}`}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-pastel-pink/10 to-transparent rounded-3xl" />
-      <p className="heading text-2xl md:text-3xl text-pastel-cream drop-shadow-md leading-relaxed">
+      <p className={`heading text-2xl md:text-3xl text-pastel-cream drop-shadow-md leading-relaxed transition-opacity duration-300 ${isTop ? 'opacity-100' : 'opacity-0'}`}>
         {reason}
       </p>
     </motion.div>
@@ -329,10 +329,9 @@ function FinaleContent() {
           <h3 className="handwritten text-2xl md:text-3xl text-pastel-pink mt-1.5">Meri Jaan</h3>
         </motion.div>
 
-        {/* Message card */}
         <motion.div
           variants={itemVariants}
-          className="bg-[#1a0a2e]/50 backdrop-blur-md border border-pastel-gold/10 rounded-[2rem] mt-4 shadow-lg hover:border-pastel-gold/30 transition-colors"
+          className="bg-[#1a0a2e]/80 border border-pastel-gold/10 rounded-[2rem] mt-4 shadow-lg hover:border-pastel-gold/30 transition-colors"
         >
           <div className="px-10 md:px-20 py-16 md:py-24">
             <div className="space-y-12">
