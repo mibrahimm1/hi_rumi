@@ -170,19 +170,11 @@ function NebulaCloud({ position, color, scale = 3 }) {
   return (
     <group ref={ref} position={position}>
       <mesh scale={scale}>
-        <sphereGeometry args={[1.5, 32, 32]} />
-        <MeshDistortMaterial
-          color={color} emissive={color} emissiveIntensity={0.12}
-          transparent opacity={0.055} distort={0.5} speed={0.6}
-          roughness={1} depthWrite={false}
-        />
-      </mesh>
-      <mesh scale={scale * 0.6} position={[scale * 0.3, 0, 0]}>
-        <sphereGeometry args={[1, 24, 24]} />
-        <MeshDistortMaterial
-          color={color} emissive={color} emissiveIntensity={0.08}
-          transparent opacity={0.035} distort={0.6} speed={0.9}
-          roughness={1} depthWrite={false}
+        <sphereGeometry args={[1.5, 12, 12]} />
+        <meshBasicMaterial
+          color={color}
+          transparent opacity={0.05}
+          depthWrite={false}
         />
       </mesh>
     </group>
@@ -303,7 +295,7 @@ function MemoryOrbitScene3D() {
       <Float speed={1.5} floatIntensity={0.2} rotationIntensity={0.1}>
         <group>
           <mesh>
-            <sphereGeometry args={[0.6, 32, 32]} />
+            <sphereGeometry args={[0.6, 16, 16]} />
             <MeshDistortMaterial color="#ffb347" emissive="#ffb347" emissiveIntensity={1.5} distort={0.2} speed={2} />
           </mesh>
           <mesh rotation={[Math.PI / 2.5, 0, 0]}>
@@ -417,14 +409,14 @@ function SupernovaScene3D() {
            <Heart3D position={[0, 0, 0]} scale={0.8} color={heartColor} />
         ) : (
           <mesh>
-            <sphereGeometry args={[1, 64, 64]} />
+            <sphereGeometry args={[1, 24, 24]} />
             <MeshDistortMaterial color="#fdf6e3" emissive="#ffb347" emissiveIntensity={2} distort={0.6} speed={3} roughness={0.1} />
           </mesh>
         )}
         
         {phase === 3 && (
           <mesh scale={1.5}>
-            <sphereGeometry args={[1, 64, 64]} />
+            <sphereGeometry args={[1, 24, 24]} />
             <MeshDistortMaterial color="#ff6b9d" emissive="#c44dff" emissiveIntensity={1} transparent opacity={0.4} distort={0.8} speed={1.5} wireframe />
           </mesh>
         )}
@@ -466,7 +458,7 @@ function FinaleScene3D() {
         <group ref={heartRef} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
           <Heart3D position={[0, 0, 0]} scale={0.8} color="#ff6b9d" />
           <mesh>
-            <sphereGeometry args={[1.5, 32, 32]} />
+            <sphereGeometry args={[1.5, 16, 16]} />
             <meshBasicMaterial color="#ff6b9d" transparent opacity={0.05} />
           </mesh>
         </group>
@@ -589,11 +581,6 @@ function CakeScene3D({ position = [0, 0, 0], interactive = false }) {
 }
 
 function Cake3D(props) {
-  const { scene } = useGLTF('/models/heart-shaped_cake_draco.glb')
-  
-  // Clone scene so we don't mutate the cached object directly
-  const clonedScene = useMemo(() => scene.clone(), [scene])
-  
   const ref = useRef()
   useFrame((state, delta) => {
     if (ref.current) {
@@ -608,10 +595,9 @@ function Cake3D(props) {
     <group {...props}>
       <group rotation={[0.6, 0, 0]}>
         <group ref={ref}>
-          <primitive object={clonedScene} />
+          <Heart3D position={[0, 0, 0]} scale={1.5} color="#ffb347" />
         </group>
       </group>
     </group>
   )
 }
-useGLTF.preload('/models/heart-shaped_cake_draco.glb')
