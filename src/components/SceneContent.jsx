@@ -155,7 +155,7 @@ function SwipeableCard({ reason, index, total, onRemove, isTop }) {
       animate={{ opacity, scale, y }}
       exit={{ x: x.get() > 0 ? 300 : -300, opacity: 0, transition: { duration: 0.2 } }}
       whileTap={isTop ? { cursor: "grabbing" } : {}}
-      className={`absolute inset-0 bg-white/5 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl p-10 md:p-14 flex items-center justify-center text-center ${isTop ? 'cursor-grab' : ''}`}
+      className={`absolute inset-0 bg-white/10 border border-white/20 rounded-3xl shadow-2xl p-10 md:p-14 flex items-center justify-center text-center ${isTop ? 'cursor-grab' : ''}`}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-pastel-pink/10 to-transparent rounded-3xl" />
       <p className="heading text-2xl md:text-3xl text-pastel-cream drop-shadow-md leading-relaxed">
@@ -211,7 +211,7 @@ function SoundtrackContent() {
       </motion.div>
 
       <motion.div variants={itemVariants}
-        className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-4 shadow-2xl"
+        className="bg-white/15 border border-white/20 rounded-3xl p-4 shadow-2xl"
         whileHover={{ scale: 1.02 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
       >

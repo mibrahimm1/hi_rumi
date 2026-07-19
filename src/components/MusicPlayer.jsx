@@ -31,7 +31,7 @@ export default function MusicPlayer({ isPlaying, setIsPlaying }) {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 1, type: "spring" }}
       onClick={() => setIsPlaying(!isPlaying)}
-      className="fixed top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-pastel-pink/30 flex items-center justify-center hover:border-pastel-pink/60 transition-all"
+      className="fixed top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/60 border border-pastel-pink/30 flex items-center justify-center hover:border-pastel-pink/60 transition-all"
     >
       {isPlaying ? (
         <div className="flex gap-[2px] items-end h-3.5">

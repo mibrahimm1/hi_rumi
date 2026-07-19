@@ -73,7 +73,7 @@ function CameraController({ currentScene }) {
 
 function DeepStarField() {
   const groupRef = useRef()
-  const count = 4000
+  const count = 1500
 
   const [positions, colors, sizes] = useMemo(() => {
     const pos = new Float32Array(count * 3)
@@ -496,21 +496,12 @@ function Heart3D({ position, scale = 1, color = '#ff6b9d' }) {
   return (
     <mesh ref={mesh} position={position} scale={scale} rotation={[0, 0, 0]}>
       <extrudeGeometry args={[shape, { depth: 0.15, bevelEnabled: true, bevelSegments: 32, steps: 2, bevelSize: 0.25, bevelThickness: 0.25 }]} />
-      <MeshTransmissionMaterial 
-        backside
-        samples={4}
-        thickness={0.8}
-        chromaticAberration={0.6}
-        anisotropy={0.3}
-        distortion={0.2}
-        distortionScale={0.5}
-        temporalDistortion={0.1}
-        iridescence={1}
-        iridescenceIOR={1.5}
-        iridescenceThicknessRange={[100, 400]}
+      <meshPhysicalMaterial 
         color={color}
-        roughness={0.05}
-        metalness={0.1}
+        transparent 
+        opacity={0.8}
+        roughness={0.1}
+        metalness={0.3}
         clearcoat={1}
         clearcoatRoughness={0.1}
       />

@@ -16,7 +16,7 @@ export default function NavigationButton({ currentScene, totalScenes, onNext, on
         whileTap={{ scale: 0.92 }}
         onClick={onPrev}
         disabled={transitioning || isFirst}
-        className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-black/30 backdrop-blur-md border border-white/10 flex items-center justify-center disabled:opacity-0 disabled:pointer-events-none transition-opacity"
+        className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-black/40 border border-white/10 flex items-center justify-center disabled:opacity-0 disabled:pointer-events-none transition-opacity"
       >
         <svg viewBox="0 0 24 24" className="w-4 h-4 text-pastel-cream/50" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
           <path d="M15 18l-6-6 6-6" />
@@ -74,7 +74,7 @@ export default function NavigationButton({ currentScene, totalScenes, onNext, on
             transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
           />
           {/* Glass background */}
-          <div className="absolute inset-0 rounded-full bg-black/30 backdrop-blur-md" />
+          <div className="absolute inset-0 rounded-full bg-black/40" />
           {/* Heart icon */}
           <svg viewBox="0 0 24 24" className="w-5 h-5 md:w-6 md:h-6 relative z-10 group-hover:scale-110 transition-transform" fill="#f8b4c8">
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />

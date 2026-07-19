@@ -81,11 +81,10 @@ function App() {
 
   return (
     <div className="w-full h-[100dvh] fixed inset-0 overflow-hidden">
-      {/* 3D Canvas — always running */}
       <Canvas
         camera={{ position: [0, 0, 7], fov: 60 }}
-        dpr={[1, 1.5]}
-        gl={{ antialias: true, alpha: false }}
+        dpr={1}
+        gl={{ antialias: false, alpha: false, powerPreference: "high-performance" }}
         style={{
           opacity: phase === 'loading' ? 0.3 : 1,
           transition: 'opacity 1.5s ease',
